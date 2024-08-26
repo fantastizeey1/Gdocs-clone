@@ -18,7 +18,9 @@ const CollaborativeRoom = ({ roomId, roomMetadata, users, currentUserType }: Col
   const [loading, setLoading] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLDivElement>(null);
+  
+  const inputRef = useRef<HTMLInputElement>(null);
+
 
   const updateTitleHandler = async (e: React.KeyboardEvent<HTMLInputElement>) => {
     if(e.key === 'Enter') {
@@ -69,16 +71,16 @@ const CollaborativeRoom = ({ roomId, roomMetadata, users, currentUserType }: Col
           <Header>
             <div ref={containerRef} className="flex w-fit items-center justify-center gap-2">
               {editing && !loading ? (
-                <Input 
-                  type="text"
-                  value={documentTitle}
-                  ref={inputRef}
-                  placeholder="Enter title"
-                  onChange={(e) => setDocumentTitle(e.target.value)}
-                  onKeyDown={updateTitleHandler}
-                  disable={!editing}
-                  className="document-title-input"
-                />
+                <Input
+      type="text"
+      value={documentTitle}
+      ref={inputRef}
+      placeholder="Enter title"
+      onChange={(e) => setDocumentTitle(e.target.value)}
+      onKeyDown={updateTitleHandler}
+      disabled={!editing}
+      className="document-title-input"
+    />
               ) : (
                 <>
                   <p className="document-title">{documentTitle}</p>
